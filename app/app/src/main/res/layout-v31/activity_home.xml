@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E3133">
+
+    <ImageView
+        android:id="@+id/image_preview"
+        android:layout_width="330dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/img_placeholder"
+        android:contentDescription="@string/image_preview_text"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/btn_capture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_capture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/circle_button"
+        android:contentDescription="@string/btn_capture_text"
+        android:drawableTop="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_preview"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <Button
+        android:id="@+id/btn_accept_capture"
+        android:contentDescription="@string/accept_capture_text"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_button"
+        android:drawableTop="@drawable/ic_accept"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_capture"
+        app:layout_constraintBaseline_toBaselineOf="@id/btn_capture"/>
+
+    <Button
+        android:id="@+id/btn_decline_capture"
+        android:contentDescription="@string/decline_capture_text"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/circle_button"
+        android:drawableTop="@drawable/ic_decline"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_capture"
+        app:layout_constraintBaseline_toBaselineOf="@id/btn_capture"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
