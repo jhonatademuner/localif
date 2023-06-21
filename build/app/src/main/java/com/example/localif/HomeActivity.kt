@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
 
             // Intents are objects of the android.content.Intent type. Your code can send them to the Android system defining
             // the components you are targeting. Intent to start an activity called SecondActivity with the following code.
-            val intent = Intent(this, LocalityActivity::class.java)
+            val intent = Intent(this, LocationActivity::class.java)
             // start the activity connect to the specified class
             startActivity(intent)
         }

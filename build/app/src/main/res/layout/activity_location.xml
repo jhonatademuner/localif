@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E3133">
+
+    <TextView
+        android:id="@+id/location_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Você está aqui!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/locality_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/locality_image"
+        android:layout_width="330dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/outline_rounded_all"
+        android:contentDescription="@string/image_preview_text"
+        android:scaleType="centerCrop"
+        android:padding="5dp"
+        android:cropToPadding="true"
+        app:layout_constraintBottom_toTopOf="@id/btn_accept_route"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/locality_name"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/filled_rounded_bottom"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/locality_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="location_name" />
+
+    <TextView
+        android:id="@+id/route_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Deseja ir para algum lugar?"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_decline_route"/>
+
+    <Button
+        android:id="@+id/btn_decline_route"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:background="@drawable/filled_rounded_left"
+        android:contentDescription="Decline Route Button"
+        android:layout_marginRight="165dp"
+        android:drawableTop="@drawable/ic_decline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locality_image"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <Button
+        android:id="@+id/btn_accept_route"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:background="@drawable/filled_rounded_right"
+        android:contentDescription="Accept Route Button"
+        android:layout_marginLeft="165dp"
+        android:drawableTop="@drawable/ic_accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locality_image"
+        tools:ignore="RedundantDescriptionCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
