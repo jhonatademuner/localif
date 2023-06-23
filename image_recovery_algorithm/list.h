@@ -11,7 +11,7 @@ typedef struct list_node ListNode;
 List *create_empty_list();
 
 // add an element at the beginning of the list
-void insert_into_the_list(List *l, int **v, int width, int height, char *path, char  *locality);
+void insert_into_the_list(List *l, int **v, int width, int height, char *path, char *locality);
 
 // recursive function associated with insert_into_the_list
 // static void _insert_sorted_into_the_list(List *l, int v);
@@ -31,7 +31,7 @@ void insert_into_the_list(List *l, int **v, int width, int height, char *path, c
 // void remove_from_list(List *l, int val, char mode[]);
 
 // // size of hte list
-// int size_list(List *l);
+int size_list(List *l);
 
 // // check whether an element is in the list
 // int is_in_the_list(List *l, int v);

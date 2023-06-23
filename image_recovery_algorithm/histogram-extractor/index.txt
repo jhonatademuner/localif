@@ -1,0 +1,8 @@
+7
+img/high-school_rooms histogram-extractor/high-school_rooms/histogram-extractor-0.txt high-school_rooms
+img/high-school_rooms histogram-extractor/high-school_rooms/histogram-extractor-1.txt high-school_rooms
+img/college_rooms histogram-extractor/college_rooms/histogram-extractor-2.txt college_rooms
+img/college_rooms histogram-extractor/college_rooms/histogram-extractor-3.txt college_rooms
+img/bathroom histogram-extractor/bathroom/histogram-extractor-4.txt bathroom
+img/bathroom histogram-extractor/bathroom/histogram-extractor-5.txt bathroom
+img/bathroom histogram-extractor/bathroom/histogram-extractor-6.txt bathroom

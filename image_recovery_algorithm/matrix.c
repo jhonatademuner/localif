@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "matrix.h"
+
+//@ -----=============================----- @\\
+//@ -----======== OPERATIONS =========----- @\\
+//@ -----=============================----- @\\
 
 void getDimensions(char *filePath, int *width, int *height)
 {
