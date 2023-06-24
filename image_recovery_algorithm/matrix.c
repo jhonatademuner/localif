@@ -27,7 +27,6 @@ int **readPgm(char *filePath, int *width, int *height)
 
     FILE *file;
     file = fopen(filePath, "rt");
-
     fgets(buffer, 150, file);
     fgets(buffer, 150, file);
     fgets(buffer, 150, file);

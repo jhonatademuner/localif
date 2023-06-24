@@ -12,6 +12,4 @@ void getExtractor(List *l);
 
 int *histogramExtractor(ListNode *l);
 
-void euclideanDistance(int *vector1, int *vector2, int size);
-
 #endif

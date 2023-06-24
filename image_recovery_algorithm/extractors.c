@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "extractors.h"
 #include "matrix.h"
 #include "list.h"
+#include "hist.h"
 
 //@ -----=============================----- @\\
 //@ -----========== STRUCTS ==========----- @\\
@@ -74,13 +74,3 @@ void getExtractor(List *l)
     fclose(file);
 }
 
-void euclideanDistance(int *vector1, int *vector2, int size)
-{
-    int i;
-    double sum = 0;
-    for (i = 0; i < size; i++)
-    {
-        sum += (vector1[i] - vector2[i]) * (vector1[i] - vector2[i]);
-    }
-    printf("Distancia euclidiana: %lf\n", sqrt(sum));
-}

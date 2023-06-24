@@ -46,10 +46,10 @@ void listIterator(char *basePath, List *l)
             strcpy(path, basePath);
             strcat(path, "/");
             strcat(path, dp->d_name);
-
+            
             char *locality;
 
-            char *basePathAux = strdup(basePath);
+            char *basePathAux = strdup(path);
             locality = slice(basePath, 4, strlen(basePath));
 
             matrix = readPgm(path, &width, &height);
