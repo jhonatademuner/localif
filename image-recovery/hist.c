@@ -95,8 +95,8 @@ void printHist(Hist *h)
     HistNode *node = h->first;
     while (node != NULL)
     {
-        // printf("Vector address: %d\n", &node->info);
-        // printf("Locality: %s\n", node->locality);
+        printf("Vector address: %d\n", &node->info);
+        printf("Locality: %s\n", node->locality);
         printf("Path: %s\n", node->path);
         printf("Distance: %lf\n\n", node->distance);
         printf("-----==================================================-----\n\n");

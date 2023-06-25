@@ -54,6 +54,7 @@ int main(void)
     l = create_empty_list();
 
     listIterator("img", l);
+    print_list(l);
     getExtractor(l);
 
     Hist *h;
@@ -64,13 +65,10 @@ int main(void)
 //! ============================================================================== !\\
 
     List *userList = create_empty_list();
-    char userPath[20] = "img-8.pgm";
+    char userPath[20] = "img-user.pgm";
     int **userMatrix;
     int userWidth, userHeight;
-    // printf("dwadawdgahdjga\n");
     userMatrix = readPgm(userPath, &userWidth, &userHeight);
-    printf("width = %d\nheight = %d\n", userWidth, userHeight);
-    // printf("dwadawdadawdadaw\n");
     insert_into_the_list(userList, userMatrix, userWidth, userHeight, userPath, "user");
     int *userVector = histogramExtractor(userList->first);
 
