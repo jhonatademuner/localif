@@ -8,17 +8,17 @@ LocalIf ​​is an image recognition application specifically designed for the 
 
 Functional: Access to functionalities through code or application.
 
-## Features and Application Demo
+## Application Features and Demo
 
 - The user can take pictures inside the campus using the Android compatible mobile app built with Kotlin in Android Studio, allowing convenient use at any time.
 - Through image processing performed in Python, all photos in the database and photos taken by the user are converted to PGM format, standardizing them in grayscale.
 - The system is mainly implemented in C language, using two main structures for handling information.
-- The first structure is responsible for creating the database, where the characteristics of each image are extracted and stored individually in text files (TXT).
+- The first structure is responsible for creating the database, where the characteristics of each image are extracted and stored individually in text files (.txt).
 - Descriptor extraction is performed using two different methods: histogram and statistical shape extractor. Extracted descriptors are saved in separate folders.
 - The second framework is focused on image recognition. The input photo descriptors are extracted and Euclidean distances are calculated between it and the database image descriptors.
 - The results are averaged weighted on each base image, providing greater accuracy.
 - The structure is sorted based on the results, from lowest to highest value, displaying the five most similar locations and their corresponding images.
-  Note: The use of photos from locations other than the IFES Campus Serra can lead to wrong results, as the database is specific to that territory.
+  Note: The usage of photos from locations other than IFES Campus Serra can lead to innaccurate results, as the database is specific to that territory.
 
 ## Project Access
 
@@ -31,10 +31,10 @@ Download the app: (LINK)
 - Kotlin language
 - Android studio
 
-## Project Developer People
+## Project Developers
 
 - [@Filipe Suhett Nogueira Silva](https://github.com/filipesuhett)
 - [@Giovanna Scalfoni Sales](#)
-- [@Jhonata Poito Demuner](https://github.com/jhonataplt)
+- [@Jhonata Polito Demuner](https://github.com/jhonataplt)
 - [@João Pedro Spinassé Viana](https://github.com/JP-76)
 - [@Marllon Christiani dos Santos Ribeiro](https://github.com/Toiste)
