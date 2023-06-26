@@ -13,7 +13,7 @@ Functional: Access to functionalities through code or application.
 - The user can take pictures inside the campus using the Android compatible mobile app built with Kotlin in Android Studio, allowing convenient use at any time.
 - Through image processing performed in Python, all photos in the database and photos taken by the user are converted to PGM format, standardizing them in grayscale.
 - The system is mainly implemented in C language, using two main structures for handling information.
-- The first structure is responsible for creating the database, where the characteristics of each image are extracted and stored individually in text files (TXT).
+- The first structure is responsible for creating the database, where the characteristics of each image are extracted and stored individually in text files (.txt).
 - Descriptor extraction is performed using two different methods: histogram and statistical shape extractor. Extracted descriptors are saved in separate folders.
 - The second framework is focused on image recognition. The input photo descriptors are extracted and Euclidean distances are calculated between it and the database image descriptors.
 - The results are averaged weighted on each base image, providing greater accuracy.
