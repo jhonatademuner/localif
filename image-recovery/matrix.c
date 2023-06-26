@@ -21,6 +21,7 @@ void getDimensions(char *filePath, int *width, int *height)
 int **readPgm(char *filePath, int *width, int *height)
 {
     getDimensions(filePath, width, height);
+
     int **matrix;
     int i, j;
     char buffer[150];
@@ -41,7 +42,9 @@ int **readPgm(char *filePath, int *width, int *height)
     {
         for (j = 0; j < *width; j++)
         {
-            fscanf(file, "%d", &matrix[i][j]);
+            unsigned char pixel;
+            fscanf(file, "%hhu", &pixel);
+            matrix[i][j] = pixel;
         }
     }
 
@@ -49,6 +52,19 @@ int **readPgm(char *filePath, int *width, int *height)
     return matrix;
 }
 
+void print_matrix(int **matrix, int width, int height)
+{
+    int i, j;
+    for (i = 0; i < height; i++)
+    {
+        printf("\n");
+        for (j = 0; j < width; j++)
+        {
+            printf("%d ", matrix[i][j]);
+        }
+    }
+    printf("\n");
+}
 
 void matrixToPgm(int **matrix, int width, int height, char *filePath)
 {

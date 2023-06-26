@@ -9,83 +9,61 @@
 #include "utils.h"
 
 //! -----=====================================================----- !\\
-//! -----=====================================================----- !\\
-//! -----=====================================================----- !\\
-//! -----=====================================================----- !\\
 //! -----================== LIBERAR MEMORIA ==================----- !\\
 //! -----=====================================================----- !\\
-//! -----=====================================================----- !\\
-//! -----=====================================================----- !\\
-//! -----=====================================================----- !\\
-
-struct list
-{
-    ListNode *first;
-};
-
-struct list_node
-{
-    int height;
-    int width;
-    int **info;
-    char *path;
-    char *locality;
-    ListNode *next;
-};
-
-struct hist
-{
-    HistNode *first;
-};
-
-struct hist_node
-{
-    int *info;
-    char *locality;
-    char *path;
-    double distance;
-    HistNode *next;
-};
 
 int main(void)
 {
+//@ ======================================================================================================================== @\\
+//@ ======================================================================================================================== @\\
 
     List *l;
     l = create_empty_list();
-
     listIterator("img", l);
-    print_list(l);
     getExtractor(l);
+
+//@ ======================================================================================================================== @\\
+//@ ======================================================================================================================== @\\
 
     Hist *h;
     h = create_empty_hist();
-    histIterator("histogram-extractor/index.txt", h);
+    histIterator("index.txt", h);
 
-//! ============================================================================== !\\
-//! ============================================================================== !\\
+//@ ======================================================================================================================== @\\
+//@ ======================================================================================================================== @\\
 
-    List *userList = create_empty_list();
-    char userPath[20] = "img-user.pgm";
+    List *userList;
+    int userWidth = 480, userHeight = 800;
+    userList = create_empty_list();
+
+
+
+
+    // aqui entra a matriz do usuario
     int **userMatrix;
-    int userWidth, userHeight;
-    userMatrix = readPgm(userPath, &userWidth, &userHeight);
-    insert_into_the_list(userList, userMatrix, userWidth, userHeight, userPath, "user");
-    int *userVector = histogramExtractor(userList->first);
 
-//! ============================================================================== !\\
-//! ============================================================================== !\\
 
-    
-    calculateDistances(userVector, h);
-    printHist(h);
 
-    printf("\n\n\n\n\n");
 
+
+    insert_into_the_list(userList, userMatrix, userWidth, userHeight, "userPath", "userLocation");
+    int *userVector = histogramExtractor(getInfo(userList, 0));
+    double userVectorSMD[6];
+    getStatisticalMomentsDescriptors(userMatrix, userWidth, userHeight, userVectorSMD);
+    calculateDistances(userVector, userVectorSMD, h);
     sortHist(h);
 
+//@ ======================================================================================================================== @\\
+//@ ======================================================================================================================== @\\
 
-
-    printHist(h);
+    char **rankedHist = malloc(5 * sizeof(char *));
+    rankedHist = rankHist(h);
+    char **result = malloc(6 * sizeof(char *));
+    result[0] = getTopLocality(h);
+    for (int i = 0; i < 5; i++)
+    {
+        result[i+1] = rankedHist[i];
+    }
 
     return 0;
-};
+}

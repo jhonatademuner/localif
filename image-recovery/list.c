@@ -36,8 +36,6 @@ List *create_empty_list()
   return l;
 }
 
-// int is_empty(List *l) { return l->first == NULL; }
-
 void insert_into_the_list(List *l, int **v, int width, int height, char *path, char *locality)
 {
   ListNode *node = (ListNode *)malloc(sizeof(ListNode));
@@ -50,19 +48,14 @@ void insert_into_the_list(List *l, int **v, int width, int height, char *path, c
   l->first = node;
 }
 
-// void insert_sorted_into_the_list(List *l, int v) {
-//   // TO IMPLEMENT
-// }
-
-// void free_list(List *l) {
-//   ListNode *p = l->first;
-//   while (p != NULL) {
-//     ListNode *t = p->next; // keep the reference for the next node
-//     free(p);               // free the current node
-//     p = t;                 // go to the next node
-//   }
-//   free(l); // free the list structure
-// }
+ListNode *getInfo(List *l, int index){
+        ListNode *aux = l->first;
+        for (int i = 0; i < index; i++)
+        {
+            aux = aux->next;
+        }
+        return aux;
+    }
 
 int size_list(List *l)
 {
@@ -83,6 +76,27 @@ void print_list(List *l)
     printf("path: %s\n", p->path);
     printf("locality: %s\n", p->locality);
     printf("height: %d\n", p->height);
-    printf("width: %d\n=================\n", p->width);
+    printf("width: %d\n", p->width);
+    printf("=================\n");
   }
+}
+
+void freeListNode(ListNode *node)
+{
+  free(node->info);
+  free(node->path);
+  free(node->locality);
+  free(node);
+}
+
+void freeList(List *l)
+{
+  ListNode *p = l->first;
+  while (p != NULL)
+  {
+    ListNode *aux = p->next;
+    freeListNode(p);
+    p = aux;
+  }
+  free(l);
 }

@@ -4,6 +4,9 @@
     "*.ejs": "html",
     "stdio.h": "c",
     "matrix.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "cmath": "c",
+    "chrono": "c",
+    "utility": "c"
   }
 }

@@ -9,10 +9,10 @@ def pgmConverter(inputPath, outputPath):
 def main():
     inputDirectory = "base-images"
     outputDirectory = "img"
-    i= 0
+    i = 0
     for filename in os.listdir(inputDirectory):
         inputPath = os.path.join(inputDirectory, filename)
-        outputPath = os.path.join(outputDirectory, filename.replace(".png", ".pgm"))
+        outputPath = "images-to-pgm/img-" + str(i) + ".pgm"
         pgmConverter(inputPath, outputPath)
         i += 1
 
