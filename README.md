@@ -22,14 +22,15 @@ Functional: Access to functionalities through code or application.
 
 ## Project Access
 
-Download the app: (LINK)
+Download the app [Here](https://drive.google.com/file/d/1Jqb_dPPANdOFTiS9xi2EAA6W5ouenHUk/view?usp=sharing).
 
 ## Technologies Used
 
 - C language
 - Python language
 - Kotlin language
-- Android studio
+- Java Languafe
+- Android Studio IDE
 
 ## Project Developers
 
