@@ -13,4 +13,4 @@ void calcAssimetry(int **matrix, int width, int height, double *assimetry, doubl
 
 void calcKurtosis(int **matrix, int width, int height, double *kurtosis, double *mean, double *standardDeviation);
 
-#endif // UTILS_H
+#endif

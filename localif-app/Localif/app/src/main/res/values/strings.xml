@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Localif</string>
+    <string name="btn_image_capture_text">Tirar Foto</string>
+    <string name="btn_capture_text">Camera Button</string>
+    <string name="image_preview_text">Image Input Preview</string>
+    <string name="accept_capture_text">Accept Capture Text</string>
+    <string name="decline_capture_text">Decline Capture Text</string>
+</resources>

@@ -36,10 +36,13 @@ void saveTXT(char *path, double *vector, int size, char *type)
     FILE *file = fopen(path, "w");
     for (int i = 0; i < size; i++)
     {
-        if(strcmp(type, "int") == 0){
-        fprintf(file, "%d ", (int)vector[i]);
-        } else {
-        fprintf(file, "%lf ", vector[i]);
+        if (strcmp(type, "int") == 0)
+        {
+            fprintf(file, "%d ", (int)vector[i]);
+        }
+        else
+        {
+            fprintf(file, "%lf ", vector[i]);
         }
     }
     fclose(file);
@@ -61,26 +64,20 @@ int *histogramExtractor(ListNode *p)
 
 void getStatisticalMomentsDescriptors(int **matrix, int width, int height, double *vectorSMD)
 {
-    // Inicializacao dos momentos
 
     double mean[2];
     double standardDeviation[2];
     double assimetry[2];
     double kurtosis[2];
 
-    // Calculo da mean
     calcMean(matrix, width, height, mean);
 
-    // Calculo do standard deviation
     calcStandardDeviation(matrix, width, height, standardDeviation, mean);
 
-    // Calculo da assimetry
     calcAssimetry(matrix, width, height, assimetry, mean, standardDeviation);
 
-    // Calculo da kurtosis
     calcKurtosis(matrix, width, height, kurtosis, mean, standardDeviation);
 
-    // Armazenamento dos momentos no descriptor
     vectorSMD[0] = standardDeviation[0];
     vectorSMD[1] = standardDeviation[1];
     vectorSMD[2] = assimetry[0];
@@ -106,8 +103,9 @@ void getExtractor(List *l)
         sprintf(path, "histogram-extractor/%s/histogram-extractor-%d.txt", aux->locality, i);
         sprintf(path2, "SMD-extractor/%s/SMD-extractor-%d.txt", aux->locality, i++);
         double doubleVector[256];
-        for (int j = 0; j < 256; j++) {
-            doubleVector[j] = (double) vector[j];
+        for (int j = 0; j < 256; j++)
+        {
+            doubleVector[j] = (double)vector[j];
         }
         saveTXT(path, doubleVector, 256, "int");
         saveTXT(path2, vectorSMD, 6, "double");

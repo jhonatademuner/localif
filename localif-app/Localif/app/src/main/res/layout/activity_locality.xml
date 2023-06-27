@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:background="#333339">
+
+    <ImageView
+        android:id="@+id/locality_image"
+        android:layout_width="330dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/outline_rounded_all"
+        android:contentDescription="@string/image_preview_text"
+        android:cropToPadding="true"
+        android:padding="5dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <TextView
+        android:id="@+id/locality_name"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:background="@drawable/filled_rounded_bottom"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/locality_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="locality_name" />
+
+    <Button
+        android:id="@+id/btn_wrong_locality"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:background="#00000000"
+        android:paddingTop="-20dp"
+        android:text="Local errado?"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/route_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locality_name" />
+
+    <TextView
+        android:id="@+id/route_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Deseja ir para algum lugar?"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_wrong_locality" />
+
+    <Button
+        android:id="@+id/btn_decline_route"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="165dp"
+        android:background="@drawable/filled_rounded_left"
+        android:contentDescription="Decline Route Button"
+        android:drawableTop="@drawable/ic_decline"
+        android:paddingTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/route_question"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <Button
+        android:id="@+id/btn_accept_route"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="165dp"
+        android:background="@drawable/filled_rounded_right"
+        android:contentDescription="Accept Route Button"
+        android:drawableTop="@drawable/ic_accept"
+        android:paddingTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/route_question"
+        tools:ignore="RedundantDescriptionCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
