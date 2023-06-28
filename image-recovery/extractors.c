@@ -31,6 +31,7 @@ struct list_node
 //@ -----======== OPERATIONS =========----- @\\
 //@ -----=============================----- @\\
 
+// Function to save vector data to a text file
 void saveTXT(char *path, double *vector, int size, char *type)
 {
     FILE *file = fopen(path, "w");
@@ -48,6 +49,7 @@ void saveTXT(char *path, double *vector, int size, char *type)
     fclose(file);
 }
 
+// Function to extract a histogram from a given list node
 int *histogramExtractor(ListNode *p)
 {
     int *vector = (int *)calloc(256, sizeof(int));
@@ -62,22 +64,28 @@ int *histogramExtractor(ListNode *p)
     return vector;
 }
 
+// Function to calculate statistical moments descriptors for a given matrix
 void getStatisticalMomentsDescriptors(int **matrix, int width, int height, double *vectorSMD)
 {
-
+    // Initialization of moments
     double mean[2];
     double standardDeviation[2];
     double assimetry[2];
     double kurtosis[2];
 
+    // Calculation of mean
     calcMean(matrix, width, height, mean);
 
+    // Calculation of standard deviation
     calcStandardDeviation(matrix, width, height, standardDeviation, mean);
 
+    // Calculation of asymmetry
     calcAssimetry(matrix, width, height, assimetry, mean, standardDeviation);
 
+    // Calculation of kurtosis
     calcKurtosis(matrix, width, height, kurtosis, mean, standardDeviation);
 
+    // Storing the moments in the descriptor
     vectorSMD[0] = standardDeviation[0];
     vectorSMD[1] = standardDeviation[1];
     vectorSMD[2] = assimetry[0];
@@ -86,6 +94,7 @@ void getStatisticalMomentsDescriptors(int **matrix, int width, int height, doubl
     vectorSMD[5] = kurtosis[1];
 }
 
+// Function to extract features for all images in the list and save them to files
 void getExtractor(List *l)
 {
     ListNode *aux = l->first;

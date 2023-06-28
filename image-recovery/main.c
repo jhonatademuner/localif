@@ -8,40 +8,65 @@
 #include "extractors.h"
 #include "utils.h"
 
-int main(void)
+int main(int argc, char *argv[ ])
 {
+    int choice = -1;
 
-    List *l;
-    l = create_empty_list();
-    listIterator("img", l);
-    getExtractor(l);
-
-    Hist *h;
-    h = create_empty_hist();
-    histIterator("index.txt", h);
-
-    List *userList;
-    int userWidth = 480, userHeight = 800;
-    userList = create_empty_list();
-
-    // aqui entra a matriz do usuario
-    int **userMatrix;
-
-    insert_into_the_list(userList, userMatrix, userWidth, userHeight, "userPath", "userLocation");
-    int *userVector = histogramExtractor(getInfo(userList, 0));
-    double userVectorSMD[6];
-    getStatisticalMomentsDescriptors(userMatrix, userWidth, userHeight, userVectorSMD);
-    calculateDistances(userVector, userVectorSMD, h);
-    sortHist(h);
-
-    char **rankedHist = malloc(5 * sizeof(char *));
-    rankedHist = rankHist(h);
-    char **result = malloc(6 * sizeof(char *));
-    result[0] = getTopLocality(h);
-    for (int i = 0; i < 5; i++)
+    while (choice != 0)
     {
-        result[i + 1] = rankedHist[i];
+        printf("Menu:\n");
+        printf("1. Load Database\n");
+        printf("2. Run User Image PGM\n");
+        printf("0. Exit\n");
+        printf("Enter your choice (0, 1, or 2): ");
+        scanf("%d", &choice);
+
+        if (choice == 1)
+        {
+            // Load the database
+            List *l;
+            l = create_empty_list();  // Create an empty list
+            listIterator("img", l);  // Iterate through image directory and populate the list
+            getExtractor(l);  // Prompt user for feature extraction method
+
+            printf("Database loaded successfully!\n");
+        }
+        else if (choice == 2)
+        {
+            // Run user image PGM
+            Hist *h;
+            h = create_empty_hist();  // Create an empty histogram
+            histIterator("index.txt", h);  // Iterate through the index file and populate the histogram
+
+            List *userList = create_empty_list();  // Create an empty list for user's image
+            char *userPath = argv[1];  // Path to user's image
+            int **userMatrix;
+            int userWidth, userHeight;
+            userMatrix = readPgm(userPath, &userWidth, &userHeight);  // Read user's image and store it in a matrix
+            insert_into_the_list(userList, userMatrix, userWidth, userHeight, userPath, "user");  // Insert user's image into the list
+            int *userVector = histogramExtractor(getInfo(userList, 0));  // Extract histogram features for user's image
+            double userVectorSMD[6];
+            getStatisticalMomentsDescriptors(userMatrix, userWidth, userHeight, userVectorSMD);  // Calculate statistical moments descriptors for user's image
+
+            calculateDistances(userVector, userVectorSMD, h);  // Calculate distances between user's image and the database histograms
+
+            sortHist(h);  // Sort the histogram data
+
+            char **rankedHist = malloc(5 * sizeof(char *));
+            rankedHist = rankHist(h);  // Rank the histograms based on distances
+
+            printf("First 5 localities:\n");
+            for (int i = 0; i < 5; i++)
+            {
+                printf("%d) %s\n", i + 1, rankedHist[i]);  // Print the ranked localities
+            }
+            printf("Top locality: %s\n", getTopLocality(h));  // Print the top locality based on rankings
+        }
+        else if (choice != 0)
+        {
+            printf("Invalid choice. Please select 0, 1, or 2.\n");
+        }
     }
 
     return 0;
-}
+};

@@ -1,8 +1,11 @@
 package com.example.localif
 
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import kotlin.IntArray
 import android.widget.Button
@@ -10,9 +13,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.WindowManager
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 
 class ImageRecovery {
@@ -58,7 +65,8 @@ class LocalityActivity : AppCompatActivity() {
 
         val imageRecoveryInstance = ImageRecovery()
 
-        val bitmap = intent?.getParcelableExtra<Bitmap>("ImageTaken")
+        var bitmap = intent?.getParcelableExtra<Bitmap>("ImageTaken")
+        bitmap = Bitmap.createScaledBitmap(bitmap!!, 480, 800, true)
 
         val pgmData = convertBitmapToPgm(bitmap!!)
 
@@ -110,22 +118,32 @@ class LocalityActivity : AppCompatActivity() {
         }
 
 //        Log.d("jDebug - imagesListData", imagesList.toString())
-//        Log.d("jDebug - imagesListFirst", imagesList[0].toString())
-//        Log.d("jDebug - imagesListFirstLocality", imagesList[0].locality)
-//        Log.d("jDebug - imagesListFirstEuclideanDistance", imagesList[0].euclideanDistance.toString())
-//        Log.d("jDebug - imagesListFirstSmdDistance", imagesList[0].smdDistance.toString())
 
         imagesList = sortImagesList(imagesList)
+
+//        for (i in 0 until imagesList.size){
+//            Log.d("jDebug - SortedLocality", imagesList[i].locality)
+//            Log.d("jDebug - SortedEuclidean", imagesList[i].euclideanDistance.toString())
+//            Log.d("jDebug - SortedSmd", imagesList[i].smdDistance.toString())
+//        }
 
         val topLocalities = topLocalities(imagesList)
         val firstLocality = getMostFrequentLocality(imagesList)
 
+//        Log.d("jDebug - topLocalities", topLocalities.joinToString { it })
+//        Log.d("jDebug - firstLocality", firstLocality)
+
         var localityArr = arrayOf(firstLocality) + topLocalities
+
+//        Log.d("jDebug - localityArr", localityArr.joinToString { it })
 
         val result = getImageFromName(localityArr)
 
         localityArr = result.first
         val imageArr = result.second
+
+        Log.d("jDebug - localityArr", localityArr.joinToString { it })
+//        Log.d("jDebug - imageArr", imageArr.joinToString { it.toString() })
 
         localityName.text = localityArr[0]
         localityImage.setImageResource(imageArr[0])
@@ -145,33 +163,62 @@ class LocalityActivity : AppCompatActivity() {
             Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show()
         }
 
+        btnWrongLocality.setOnClickListener{
+            showPopup(this, localityArr)
+        }
+
+    }
+
+    private fun showPopup(context: Context, localityArr: Array<String>) {
+        val builder = AlertDialog.Builder(context)
+        val inflater = LayoutInflater.from(context)
+        val popupView = inflater.inflate(R.layout.popup_layout, null)
+        builder.setView(popupView)
+
+        // Get references to views inside the popup layout
+        val popupText1 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_1)
+        val popupText2 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_2)
+        val popupText3 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_3)
+        val popupText4 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_4)
+        val popupText5 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_5)
+
+        popupText1.text = localityArr[1]
+        popupText2.text = localityArr[2]
+        popupText3.text = localityArr[3]
+        popupText4.text = localityArr[4]
+        popupText5.text = localityArr[5]
+
+        val dialog = builder.create()
+        dialog.show()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        )
+
+        popupView.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
 
+
+
     private fun convertBitmapToPgm(bitmap: Bitmap): Array<IntArray> {
-        val originalWidth = bitmap.width
-        val originalHeight = bitmap.height
-        val targetWidth = 480
-        val targetHeight = 800
+        val width = bitmap.width
+        val height = bitmap.height
 
-        val pgmData = Array(targetWidth) { IntArray(targetHeight) { 0 } }
+        val grayscaleData = IntArray(width * height)
+        bitmap.getPixels(grayscaleData, 0, width, 0, 0, width, height)
 
-        val pixels = IntArray(originalWidth * originalHeight)
-        bitmap.getPixels(pixels, 0, originalWidth, 0, 0, originalWidth, originalHeight)
+        val pgmData = Array(height) { IntArray(width) }
 
-        val scaleX = originalWidth.toFloat() / targetWidth
-        val scaleY = originalHeight.toFloat() / targetHeight
-
-        for (x in 0 until targetWidth) {
-            for (y in 0 until targetHeight) {
-
-                val sourceX = (x * scaleX).toInt()
-                val sourceY = (y * scaleY).toInt()
-
-                val sourcePixel = pixels[sourceY * originalWidth + sourceX]
-                val gray = Color.red(sourcePixel)
-
-                pgmData[x][y] = gray
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val pixel = grayscaleData[y * width + x]
+                val gray = Color.red(pixel)
+                pgmData[y][x] = gray
             }
         }
 
@@ -235,36 +282,49 @@ class LocalityActivity : AppCompatActivity() {
         return imagesList
     }
 
+
     private fun topLocalities(imagesList: ArrayList<Node>): Array<String> {
-        val distinctLocalities = imagesList.map { it.locality }.distinct()
-        return distinctLocalities.take(5).toTypedArray()
-    }
 
-    private fun getMostFrequentLocality(nodes: List<Node>): String {
-        val localityCount = mutableMapOf<String, Int>()
-        var distinctCount = 0
-        var mostFrequentLocality: String? = null
-
-        for (node in nodes) {
-            val locality = node.locality
-            val count = localityCount.getOrDefault(locality, 0)
-            localityCount[locality] = count + 1
-
-            if (count == 0) {
-                distinctCount++
-                if (distinctCount == 5) {
-                    mostFrequentLocality = localityCount.maxByOrNull { it.value }?.key
+        var differentLocalities = 0
+        val topLocalities = arrayOf("","","","","")
+        for (i in 0 until imagesList.size){
+            if (!(imagesList[i].locality in topLocalities)){
+                topLocalities[differentLocalities] = imagesList[i].locality
+                differentLocalities += 1
+                if (differentLocalities >= 5){
                     break
                 }
             }
         }
-
-        if (distinctCount < 5) {
-            mostFrequentLocality = localityCount.maxByOrNull { it.value }?.key
-        }
-
-        return mostFrequentLocality.toString()
+        return topLocalities
     }
+
+    private fun getMostFrequentLocality(imagesList: ArrayList<Node>): String {
+
+        val localityCount = arrayOf(0, 0, 0, 0, 0)
+        val localities: Array<String> = arrayOf("", "", "", "", "")
+        for (i in 0 until 5){
+            localities[i] = imagesList[i].locality
+            localityCount[i] += 1
+        }
+        for (i in 0 until 5){
+            for (j in i + 1 until 5){
+                if(localities[i] == localities[j]){
+                    localityCount[i] += 1
+                }
+            }
+        }
+        var max = 0
+        var maxIndex = 0
+        for (i in 0 until 5){
+            if (localityCount[i] > max){
+                max = localityCount[i]
+                maxIndex = i
+            }
+        }
+        return localities[maxIndex]
+    }
+
 
     private fun getImageFromName(localityArr: Array<String>): Pair<Array<String>, IntArray> {
         val arrSize = localityArr.size
@@ -370,5 +430,4 @@ class LocalityActivity : AppCompatActivity() {
         }
         return Pair(localityArr, imageArr)
     }
-
 }

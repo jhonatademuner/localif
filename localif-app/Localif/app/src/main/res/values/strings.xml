@@ -5,4 +5,9 @@
     <string name="image_preview_text">Image Input Preview</string>
     <string name="accept_capture_text">Accept Capture Text</string>
     <string name="decline_capture_text">Decline Capture Text</string>
+    <string name="top_localities_popup_title">Top 5 localidades mais parecidas!</string>
+    <string name="wrong_locality_text">Local errado?</string>
+    <string name="route_question_text">Deseja ir para algum lugar?</string>
+    <string name="decline_route_button_description">Decline Route Button</string>
+    <string name="accept_route_button_description">Accept Route Button</string>
 </resources>

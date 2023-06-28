@@ -170,8 +170,7 @@ double euclideanDistanceIndividualSMD(double *vector1, double *vector2, int size
 {
     double distance = 0.0;
 
-    for (int i = 0; i < size; i++)
-    {
+    for (int i = 0; i < size; i++) {
         double diff = vector1[i] - vector2[i];
         distance += diff * diff;
     }
@@ -187,7 +186,7 @@ void calculateDistances(int *userImgVector, double *userSMD, Hist *h)
     while (node != NULL)
     {
         node->distance = euclideanDistance(userImgVector, node->info, 256);
-        node->smdDistance = euclideanDistanceIndividualSMD(userSMD, node->smd, 6);
+        node->smdDistance = euclideanDistanceIndividualSMD(userSMD, node->smd, 6);   
         node = node->next;
     }
 }
@@ -368,5 +367,6 @@ char **rankHist(Hist *h)
 {
     char **rank = malloc(5 * sizeof(char *));
     topLocalities(h, rank);
+    // rank[0] = getTopLocality(h);
     return rank;
 }

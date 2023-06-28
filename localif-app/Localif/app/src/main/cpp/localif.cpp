@@ -36,9 +36,6 @@ Java_com_example_localif_ImageRecovery_getSmdDistance(JNIEnv *env, jobject thiz,
                                                       jdoubleArray vector1, jdoubleArray vector2) {
     jdouble *vector1Data = env->GetDoubleArrayElements(vector1, nullptr);
     jdouble *vector2Data = env->GetDoubleArrayElements(vector2, nullptr);
-    if (vector1Data == nullptr || vector2Data == nullptr) {
-        return -1.0;
-    }
 
     jint size = (*env).GetArrayLength(vector1);
     double distance = 0.0;
