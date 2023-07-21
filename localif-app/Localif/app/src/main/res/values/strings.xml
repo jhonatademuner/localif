@@ -10,4 +10,26 @@
     <string name="route_question_text">Deseja ir para algum lugar?</string>
     <string name="decline_route_button_description">Decline Route Button</string>
     <string name="accept_route_button_description">Accept Route Button</string>
+    <string name="graph_node_text">Graph node</string>
+    <string name="graph_path_text">Graph Path</string>
+    <string name="voc_est_no">Você está no</string>
+    <string name="ponto_azul">Ponto Azul</string>
+    <string name="audit_rio">Auditório</string>
+    <string name="biblioteca">Biblioteca</string>
+    <string name="bloco_05">Bloco 05</string>
+    <string name="bloco_08">Bloco 08</string>
+    <string name="banheiros_do_bloco_09">Banheiros do Bloco 09</string>
+    <string name="coordena_o">Coordenação</string>
+    <string name="cra">CRA</string>
+    <string name="dep_sito">Depósito</string>
+    <string name="entrada_do_ifes">Entrada do IFES</string>
+    <string name="estacionamento">Estacionamento</string>
+    <string name="jardim_do_ensino_m_dio">Jardim do Ensino Médio</string>
+    <string name="laborat_rios">Laboratórios</string>
+    <string name="laborat_rios_de_tecnologia">Laboratórios de Tecnologia</string>
+    <string name="leds">LEDS</string>
+    <string name="rampa_principal">Rampa Principal</string>
+    <string name="refeit_rio">Refeitório</string>
+    <string name="salas_do_ensino_superior">Salas do Ensino Superior</string>
+    <string name="salas_dos_professores">Salas dos Professores</string>
 </resources>

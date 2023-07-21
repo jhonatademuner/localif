@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Localif"
         tools:targetApi="31">
         <activity
+            android:name=".RouteSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RouteActivity"
+            android:exported="false" />
+        <activity
             android:name=".LocalityActivity"
             android:exported="false" />
         <activity

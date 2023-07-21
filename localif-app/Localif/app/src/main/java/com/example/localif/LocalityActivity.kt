@@ -2,6 +2,7 @@ package com.example.localif
 
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -127,6 +128,7 @@ class LocalityActivity : AppCompatActivity() {
 //            Log.d("jDebug - SortedSmd", imagesList[i].smdDistance.toString())
 //        }
 
+
         val topLocalities = topLocalities(imagesList)
         val firstLocality = getMostFrequentLocality(imagesList)
 
@@ -135,18 +137,19 @@ class LocalityActivity : AppCompatActivity() {
 
         var localityArr = arrayOf(firstLocality) + topLocalities
 
-//        Log.d("jDebug - localityArr", localityArr.joinToString { it })
-
-        val result = getImageFromName(localityArr)
-
-        localityArr = result.first
-        val imageArr = result.second
 
         Log.d("jDebug - localityArr", localityArr.joinToString { it })
+
+
+        val result = getImageFromName(localityArr)
+        val localityNameArr = result.first
+        val imageArr = result.second
+        localityName.text = localityNameArr[0]
+        localityImage.setImageResource(imageArr[0])
+
+        Log.d("jDebug - localityNameArr", localityNameArr.joinToString { it })
 //        Log.d("jDebug - imageArr", imageArr.joinToString { it.toString() })
 
-        localityName.text = localityArr[0]
-        localityImage.setImageResource(imageArr[0])
 
 
         btnDeclineRoute.setOnClickListener {
@@ -155,38 +158,42 @@ class LocalityActivity : AppCompatActivity() {
 
 
         btnAcceptRoute.setOnClickListener {
-            Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show()
-        }
-
-
-        btnWrongLocality.setOnClickListener {
-            Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, RouteSelectionActivity::class.java)
+            intent.putExtra("startLocality", localityArr[0])
+            startActivity(intent)
         }
 
         btnWrongLocality.setOnClickListener{
-            showPopup(this, localityArr)
+            localityArr = showPopup(this, localityArr, localityNameArr)
         }
 
     }
 
-    private fun showPopup(context: Context, localityArr: Array<String>) {
+    private fun changeImage(localityArr: Array<String>){
+        val result = getImageFromName(localityArr)
+        val localityNameArr = result.first
+        val imageArr = result.second
+        localityName.text = localityNameArr[0]
+        localityImage.setImageResource(imageArr[0])
+    }
+
+    private fun showPopup(context: Context, localityArr: Array<String>, localityNameArr: Array<String>): Array<String> {
         val builder = AlertDialog.Builder(context)
         val inflater = LayoutInflater.from(context)
         val popupView = inflater.inflate(R.layout.popup_layout, null)
         builder.setView(popupView)
 
-        // Get references to views inside the popup layout
         val popupText1 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_1)
         val popupText2 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_2)
         val popupText3 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_3)
         val popupText4 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_4)
         val popupText5 = popupView.findViewById<TextView>(R.id.wrong_locality_text_popup_5)
 
-        popupText1.text = localityArr[1]
-        popupText2.text = localityArr[2]
-        popupText3.text = localityArr[3]
-        popupText4.text = localityArr[4]
-        popupText5.text = localityArr[5]
+        popupText1.text = localityNameArr[1]
+        popupText2.text = localityNameArr[2]
+        popupText3.text = localityNameArr[3]
+        popupText4.text = localityNameArr[4]
+        popupText5.text = localityNameArr[5]
 
         val dialog = builder.create()
         dialog.show()
@@ -197,12 +204,42 @@ class LocalityActivity : AppCompatActivity() {
             WindowManager.LayoutParams.MATCH_PARENT
         )
 
+        popupText1.setOnClickListener{
+            localityArr[0] = localityArr[1]
+            changeImage(localityArr)
+            dialog.dismiss()
+        }
+
+        popupText2.setOnClickListener{
+            localityArr[0] = localityArr[2]
+            changeImage(localityArr)
+            dialog.dismiss()
+        }
+
+        popupText3.setOnClickListener{
+            localityArr[0] = localityArr[3]
+            changeImage(localityArr)
+            dialog.dismiss()
+        }
+
+        popupText4.setOnClickListener{
+            localityArr[0] = localityArr[4]
+            changeImage(localityArr)
+            dialog.dismiss()
+        }
+
+        popupText5.setOnClickListener{
+            localityArr[0] = localityArr[5]
+            changeImage(localityArr)
+            dialog.dismiss()
+        }
+
         popupView.setOnClickListener {
             dialog.dismiss()
         }
+
+        return localityArr
     }
-
-
 
 
     private fun convertBitmapToPgm(bitmap: Bitmap): Array<IntArray> {
@@ -328,106 +365,109 @@ class LocalityActivity : AppCompatActivity() {
 
     private fun getImageFromName(localityArr: Array<String>): Pair<Array<String>, IntArray> {
         val arrSize = localityArr.size
+        val modifiedLocalityArr = Array(arrSize) { "" }
         val imageArr = IntArray(arrSize)
 
         for (i in 0 until arrSize) {
             when (localityArr[i]) {
                 "auditory" -> {
-                    localityArr[i] = "Auditório"
+                    modifiedLocalityArr[i] = "Auditório"
                     imageArr[i] = R.drawable.auditory
                 }
 
                 "block_05" -> {
-                    localityArr[i] = "Bloco 05"
+                    modifiedLocalityArr[i] = "Bloco 05"
                     imageArr[i] = R.drawable.block_05
                 }
 
                 "block_08" -> {
-                    localityArr[i] = "Bloco 08"
+                    modifiedLocalityArr[i] = "Bloco 08"
                     imageArr[i] = R.drawable.block_08
                 }
 
                 "block_09_bathrooms" -> {
-                    localityArr[i] = "Banheiros do Bloco 09"
+                    modifiedLocalityArr[i] = "Banheiros do Bloco 09"
                     imageArr[i] = R.drawable.block_09_bathrooms
                 }
 
                 "college_classrooms" -> {
-                    localityArr[i] = "Salas do Ensino Superior"
+                    modifiedLocalityArr[i] = "Salas do Ensino Superior"
                     imageArr[i] = R.drawable.college_classrooms
                 }
 
                 "staff_rooms" -> {
-                    localityArr[i] = "Salas dos Professores"
+                    modifiedLocalityArr[i] = "Salas dos Professores"
                     imageArr[i] = R.drawable.staff_rooms
                 }
 
                 "technology_classrooms" -> {
-                    localityArr[i] = "Laboratórios de Tecnologia"
+                    modifiedLocalityArr[i] = "Laboratórios de Tecnologia"
                     imageArr[i] = R.drawable.technology_classrooms
                 }
 
                 "coordination" -> {
-                    localityArr[i] = "Cordenação"
+                    modifiedLocalityArr[i] = "Cordenação"
                     imageArr[i] = R.drawable.coordination
                 }
 
                 "cra" -> {
-                    localityArr[i] = "CRA"
+                    modifiedLocalityArr[i] = "CRA"
                     imageArr[i] = R.drawable.cra
                 }
 
                 "ifes_entrance" -> {
-                    localityArr[i] = "Entrada do IFES"
+                    modifiedLocalityArr[i] = "Entrada do IFES"
                     imageArr[i] = R.drawable.ifes_entrance
                 }
 
                 "high_school_garden" -> {
-                    localityArr[i] = "Jardim do Ensino Médio"
+                    modifiedLocalityArr[i] = "Jardim do Ensino Médio"
                     imageArr[i] = R.drawable.high_school_garden
                 }
 
                 "laboratories" -> {
-                    localityArr[i] = "Laboratórios"
+                    modifiedLocalityArr[i] = "Laboratórios"
                     imageArr[i] = R.drawable.laboratories
                 }
 
                 "leds" -> {
-                    localityArr[i] = "LEDS"
+                    modifiedLocalityArr[i] = "LEDS"
                     imageArr[i] = R.drawable.leds
                 }
 
                 "library" -> {
-                    localityArr[i] = "Biblioteca"
+                    modifiedLocalityArr[i] = "Biblioteca"
                     imageArr[i] = R.drawable.library
                 }
 
                 "main_ramp" -> {
-                    localityArr[i] = "Rampa Principal"
+                    modifiedLocalityArr[i] = "Rampa Principal"
                     imageArr[i] = R.drawable.main_ramp
                 }
 
                 "parking" -> {
-                    localityArr[i] = "Estacionamento"
+                    modifiedLocalityArr[i] = "Estacionamento"
                     imageArr[i] = R.drawable.parking
                 }
 
                 "refectory" -> {
-                    localityArr[i] = "Refeitório"
+                    modifiedLocalityArr[i] = "Refeitório"
                     imageArr[i] = R.drawable.refectory
                 }
 
                 "warehouse" -> {
-                    localityArr[i] = "Depósito"
+                    modifiedLocalityArr[i] = "Depósito"
                     imageArr[i] = R.drawable.warehouse
                 }
 
                 else -> {
-                    localityArr[i] = "Local não encontrado"
+                    modifiedLocalityArr[i] = "Local não encontrado"
                     imageArr[i] = R.drawable.img_placeholder
                 }
             }
         }
-        return Pair(localityArr, imageArr)
+
+        return Pair(modifiedLocalityArr, imageArr)
     }
+
 }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.TakePicturePreview
 
 
+
 class MainActivity : AppCompatActivity() {
 
 

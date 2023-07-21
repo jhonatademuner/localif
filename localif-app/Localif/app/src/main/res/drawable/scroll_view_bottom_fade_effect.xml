@@ -1,0 +1,7 @@
+<!-- scroll_view_fade_effect.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#00333339"
+        android:endColor="#CC333339"
+        android:angle="270"/> <!-- Update the angle to 270 for vertical flip -->
+</shape>
