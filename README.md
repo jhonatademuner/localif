@@ -31,7 +31,7 @@ LocalIf ​​is an image recognition application specifically designed for IFES
 
 ## Download the Android App
 
-Download the app via [Google Drive](https://drive.google.com/file/d/1h2fxiI5BTgJ1GZfYWhF4_adGbQpZizWS/view?usp=sharing)
+Download the app via [Google Drive](https://drive.google.com/file/d/1F_ip5eVP2huJprgRNnysRlwoz8d12-34/view?usp=sharing)
 
 ## Technologies Used
 
