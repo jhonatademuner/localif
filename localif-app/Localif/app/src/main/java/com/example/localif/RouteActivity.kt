@@ -362,7 +362,7 @@ class RouteActivity : AppCompatActivity() {
                 if (pathArray[i + 1] == 8) {
                     activePaths(listOf(29))
                 } else if (pathArray[i + 1] == 17) {
-                    activePaths(listOf(29))
+                    activePaths(listOf(27,28))
                 }
             }
 

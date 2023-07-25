@@ -23,7 +23,7 @@
         android:textColor="#1277CC"
         android:text="@string/ponto_azul"
         android:textSize="24sp"
-        android:layout_marginStart="65dp"
+        android:layout_marginStart="70dp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"/>
 
