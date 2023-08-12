@@ -1,14 +1,13 @@
-![Logo](https://cdn.discordapp.com/attachments/969635641170219099/1122691804790276207/image.png)
+# Localif
+## Image Recognition Native Mobile App
 
-# Extractor based image recognition
+LocalIf ​​is an image recognition application specifically designed for IFES Campus Serra. With a comprehensive database, the program stores information about the various locations in the campus. Using two feature extractors, LocalIf ​​analyzes the photos sent by the user and determines the corresponding location. Its also have a pathfinder feature, which allows the user to find the shortest path between two locations.
 
-LocalIf ​​is an image recognition application specifically designed for IFES Campus Serra. With a comprehensive database, the program stores information about the various locations in the campus. Using two feature extractors, LocalIf ​​analyzes the photos sent by the user and determines the corresponding location.
-
-## Project Status
+### Project Status
 
 🟢 Functional: Access to functionalities through code or application.
 
-## Features and Application Demo
+### Features and Application Demo
 
 - The user can take pictures inside the campus using the Android compatible mobile app built with Kotlin in Android Studio, allowing convenient use at any time.
 - Through image processing performed in Python, all photos in the database and photos taken by the user are converted to PGM format, standardizing them in grayscale.
@@ -20,7 +19,7 @@ LocalIf ​​is an image recognition application specifically designed for IFES
 - The structure is sorted based on the results, from lowest to highest value, displaying the five most similar locations and their corresponding images.
   Note: The usage of pictures from locations other than IFES Campus Serra can lead to inaccurate results, as the database is specific to that place.
 
-## How to Use the C Algorithm using GCC
+### How to Use the C Algorithm using GCC
 
 - The C algorithm is located in the `image-recovery` folder.
 - The `image-recovery` folder contains the `img` folder, which contains the database images, and the `test` folder, which contains the test images.
@@ -29,18 +28,18 @@ LocalIf ​​is an image recognition application specifically designed for IFES
 - To compile the program, run the command `gcc main.c -o query`.
 - To run the program, run the command `./query path/to/query/image`.
 
-## Download the Android App
+### Download the Android App
 
 Download the app via [Google Drive](https://drive.google.com/file/d/1F_ip5eVP2huJprgRNnysRlwoz8d12-34/view?usp=sharing)
 
-## Technologies Used
+### Technologies Used
 
 - C/C++
 - Python
 - Kotlin
 - Java
 
-## Project Developers
+### Project Developers
 
 - [@Filipe Suhett Nogueira Silva](https://github.com/filipesuhett)
 - [@Giovanna Scalfoni Sales](#)
