@@ -1,7 +1,7 @@
 # Localif
 ## Image Recognition Native Mobile App
 
-LocalIf ​​is an image recognition application specifically designed for IFES Campus Serra. With a comprehensive database, the program stores information about the various locations in the campus. Using two feature extractors, LocalIf ​​analyzes the photos sent by the user and determines the corresponding location. Its also have a pathfinder feature, which allows the user to find the shortest path between two locations.
+LocalIf ​​is an image recognition application specifically designed for IFES Campus Serra. With a comprehensive database, the program stores information about the various locations in the campus. Using two feature extractors, LocalIf ​​analyzes the photos sent by the user and determines the corresponding location. It also contains a pathfinder feature, which allows the user to find the shortest path between two locations.
 
 ### Project Status
 
