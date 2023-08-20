@@ -7,6 +7,10 @@ LocalIf ​​is an image recognition application specifically designed for IFES
 
 🟢 Functional: Access to functionalities through code or application.
 
+### Demo
+
+![localif-preview](./preview_image.png)
+
 ### Features and Application Demo
 
 - The user can take pictures inside the campus using the Android compatible mobile app built with Kotlin in Android Studio, allowing convenient use at any time.
